@@ -7,7 +7,7 @@ import android.content.Intent;
 import sample.ble.sensortag.config.AppConfig;
 import sample.ble.sensortag.ble.BleUtils;
 
-public class BluetoothStateReciever extends BroadcastReceiver {
+public class BluetoothStateReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {

@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import com.icexel.DataCaptureActivity;
 import sample.ble.sensortag.adapters.BleDevicesAdapter;
 import sample.ble.sensortag.ble.BleDevicesScanner;
 import sample.ble.sensortag.ble.BleUtils;
@@ -157,7 +158,8 @@ public class DeviceScanActivity extends ListActivity
         if (device == null)
             return;
 
-        final Intent intent = new Intent(this, DeviceServicesActivity.class);
+//        final Intent intent = new Intent(this, DeviceServicesActivity.class);
+        final Intent intent = new Intent(this, DataCaptureActivity.class);
         intent.putExtra(DeviceServicesActivity.EXTRAS_DEVICE_NAME, device.getName());
         intent.putExtra(DeviceServicesActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
         startActivity(intent);

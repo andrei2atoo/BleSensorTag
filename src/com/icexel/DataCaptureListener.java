@@ -3,17 +3,20 @@ package com.icexel;
 import sample.ble.sensortag.fusion.sensors.ISensorManager;
 
 public class DataCaptureListener implements ISensorManager.SensorEventListener {
-    private DataRecorder dataStore = new DataRecorder();
+    private DataSession dataSession;
+    private boolean recording;
 
 
     @Override
     public void onSensorChanged(int sensorType, float[] values) {
-        dataStore.recordData(sensorType, values);
+        if (recording && dataSession != null) {
+            dataSession.recordData(sensorType, values);
+        }
 
         /*switch(sensorType) {
             case ISensor.TYPE_ACCELEROMETER:
                 sensorFusion.onAccDataUpdate(values);
-                dataStore.recordData();
+                dataSession.recordData();
                 break;
 
             case ISensor.TYPE_GYROSCOPE:
@@ -27,6 +30,23 @@ public class DataCaptureListener implements ISensorManager.SensorEventListener {
     }
 
     public void clearData() {
-        dataStore = null;
+        dataSession = null;
+    }
+
+    public boolean isRecording() {
+        return recording;
+    }
+
+    public void stopRecording() {
+        recording = false;
+    }
+
+    public void startRecording(DataSession dataSession){
+        this.dataSession = dataSession;
+        recording = true;
+    }
+
+    public DataSession getDataSession() {
+        return dataSession;
     }
 }
